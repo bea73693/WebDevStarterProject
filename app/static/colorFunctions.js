@@ -1,5 +1,8 @@
-
 window.onload = function() {
+
+    /**
+     * Flip square colors
+     */
     $("#flip").click(function () {
         var objs1 = document.getElementsByClassName("c1");
         var objs2 = document.getElementsByClassName("c2");
@@ -16,6 +19,10 @@ window.onload = function() {
             }
         });
     });
+
+    /**
+     * Change square colors to the values selected in the color input
+     */
     $("#change").click(function () {
         var colorc1 = document.getElementById("colorc1").value;
         var colorc2 = document.getElementById("colorc2").value;
@@ -32,14 +39,24 @@ window.onload = function() {
             }
         });
     });
+
+    /**
+     * Randomize the square colors
+     */
     $("#random").click(function () {
         var colors = {
             "color1": getRandomColor(),
             "color2": getRandomColor()
         };
         editColors(colors);
+        document.getElementById("colorc1").value = colors["color1"];
+        document.getElementById("colorc2").value = colors["color2"];
     });
 
+    /**
+     * Generate a random hex color
+     * @returns {string}
+     */
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -49,6 +66,10 @@ window.onload = function() {
         return color;
     }
 
+    /**
+     * Edit the colors of elements in classes c1 and c2
+     * @param colors
+     */
     function editColors(colors) {
         var elements1 = document.getElementsByClassName('c1');
         var elements2 = document.getElementsByClassName('c2');
