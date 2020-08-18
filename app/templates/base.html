@@ -12,47 +12,17 @@
         width: 30px;
         height: 30px;
     }
+    .c1{
+        background-color: #000000;
+    }
+    .c2{
+        background-color: white;
+    }
+
 </style>
 <body>
-<br>
-<button id="change" onclick="change_color()">Change colors</button>
-<br>
-<br>
-    <table width="270px" border="1px">
-    {% for n in range(8) %}
-        <tr>
-            {% for i in range(8) %}
-                {% if (i+n%2)%2 == 0 %}
-                    <td id="c1" bgcolor="black"></td>
-                {% else %}
-                    <td id="c2" bgcolor="white"></td>
-                {% endif %}
-            {% endfor %}
-        </tr>
-    {% endfor %}
-</table>
-<div id="status"></div>
-<script>
-    function change_color(){
-        var hr = new XMLHttpRequest();
-        var url = "process.php";
-        var obj1 = document.getElementById("c1");
-        var color1 = window.getComputedStyle(obj1).backgroundColor;
-        var obj2 = document.getElementById("c2");
-        var color2 = window.getComputedStyle(obj2).backgroundColor;
-        console.log(color1, color2);
-        var vars = "bgc1="+color1+"&bgc2="+color2;
-        hr.open("POST", url, true);
-
-        hr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        hr.onreadystatechange = function(){
-            if(hr.readyState == 4 && hr.status == 200){
-                var return_data = hr.responseText;
-                document.getElementById("status").innerHTML = return_data;
-
-            }
-            hr.send(vars);
-        }
-}</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='colorFunctions.js') }}" type="text/javascript"></script>
+{% block content %}{% endblock %}
 </body>
 </html>
