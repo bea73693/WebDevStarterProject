@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<button id="flip">Flip colors</button>
+<button id="change">Change colors</button>
+<button id="random">Randomize colors</button>
+<br>
+<input id="colorc1" type="color">
+<input id="colorc2" type="color" value="#ffffff">
+<br>
+<br>
+    <table width="270px" border="1px">
+    {% for n in range(8) %}
+        <tr>
+            {% for i in range(8) %}
+                {% if (i+n%2)%2 == 0 %}
+                    <td class="c1"></td>
+                {% else %}
+                    <td class="c2"></td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
